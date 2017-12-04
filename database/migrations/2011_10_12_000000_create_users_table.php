@@ -16,19 +16,21 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');            
-            $table->string('password');
-            $table->string('email'); 
+          
+            
+            $table->string('clave')->nullable();  
             $table->smallInteger('role'); // 0=Admin 1=Super_Usuario 2=Maestro 3=Alumno          
-            $table->integer('clave')->unsigned()->unique()->nullable(); //clave de la escuela unica
-            $table->integer('clave_escuela')->unsigned()->nullable(); // clave del docente/alumno ligado a la escuela
-            $table->integer('matricula')->unsigned()->nullable(); //clave del alumno o docente
+            // $table->integer('clave')->unsigned()->unique()->nullable(); //clave de la escuela unica
+            // $table->integer('clave_escuela')->unsigned()->nullable(); // clave del docente/alumno ligado a la escuela
+            // $table->integer('matricula')->unsigned()->nullable(); //clave del alumno o docente
             $table->string('avatar')->default('default.jpg'); 
-            $table->tinyInteger('estatus')->default(1);
-            $table->integer('id_expediente')->unique()->nullable();                                        
+            // $table->tinyInteger('estatus')->default(1);
+            $table->string('email');
+            $table->string('password');
+            $table->softDeletes();                                                   
             $table->rememberToken();
 
-            $table->integer('grupo_id')->unsigned()->nullable();
-            $table->foreign('grupo_id')->references('id')->on('grupos');
+           
 
             // $table->foreign('grupo_id')
             // ->references('id')->on('grupos')

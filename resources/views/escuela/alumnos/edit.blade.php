@@ -32,7 +32,7 @@
 
 
 
-                    <form method= "post" action="{{url('escuela/alumnos/'.$user->id.'/edit')}}">
+                    <form method= "post" action="{{url('escuela/alumnos/'.$alumno->id.'/edit')}}">
                        {{ csrf_field() }}                                       
 
                         <div class="row">
@@ -52,7 +52,7 @@
                                     <span class="input-group-addon">
                                         <i class="material-icons">fingerprint</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="matricula" name="matricula" value="{{ $user->matricula }}" required>
+                                    <input type="text" class="form-control" placeholder="Clave" name="clave" value="{{ $alumno->clave }}" required>
                                 </div>                           
                             </div> 
 
@@ -91,12 +91,11 @@
                                     <select class="form-control" name="grupo_id">
                                         <option value="0">Sin Asignar</option>
                                         @foreach ($grupos as $grupo)
-                                        <option value="{{ $grupo->id }}" @if($grupo->id == old('grupo_id', $user->grupo_id)) selected @endif   >{{ $grupo->name }}</option>
+                                        <option value="{{ $grupo->id }}" @if($grupo->id == old('grupo_id', $alumno->grupo_id)) selected @endif   >{{ $grupo->name }}</option>
                                         @endforeach
                                     </select>
                                     </div>
                                 </div>
-
                             
                                  <div class="footer text-center col-sm-5">  
                                  <button class="btn btn-primary">Guardar cambios</button>

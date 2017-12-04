@@ -56,10 +56,19 @@
                                 </div>                           
                             </div>  
 
+                            <div class="col-sm-6">  
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">description</i>
+                                    </span>
+                                    <input id="text" type="text" placeholder="Descripcion" class="form-control" name="descripcion" value="{{ $grupo->descripcion }}">
+                                </div>
+                            </div>         
+
                                           
 
                                                      
-                                 <div class="footer text-center col-sm-5">  
+                                 <div class="footer text-center col-sm-12">  
                                  <button class="btn btn-primary">Guardar cambios</button>
                                  <a href="{{ url('/escuela/grupos') }}" class="btn btn-default">Cancelar</a>
                             </div>

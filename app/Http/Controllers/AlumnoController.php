@@ -5,23 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Grupo;
+use App\Escuela;
+use App\Asignatura;
+use App\docentes_asignaturas;
 use Auth;
+use DB;
+use App\Alumno;
 
 class AlumnoController extends Controller
 {
 	 public function index()
     {
-    	$clave=auth()->user()->clave;    	
-    	$users=User::where('clave_escuela',$clave)->where('role','=', 3)->OrderBy('name')->paginate(10);
+    	$id=auth()->user()->id;
+        $escuela=Escuela::where('user_id',$id)->first();   	
+    	$alumnos=Alumno::where('escuela_id',$escuela->id)
+        // ->join('users', 'users.id', '=', 'user_id' )
+        // ->select('alumnos.*','alumnos.name AS alumnoname')
+        ->paginate(10); 
 
-        // dd($users);         
-   		return view('escuela.alumnos.index')->with(compact('users')); //listado de  alumnos
+         // dd($alumnos);         
+   		return view('escuela.alumnos.index')->with(compact('alumnos')); //listado de  alumnos
      }
 
       public function create()
-    {
-        $clave=auth()->user()->clave;
-        $grupos=Grupo::where('clave_escuela',$clave)->OrderBy('name')->get();
+    {    
+         $id=auth()->user()->id;
+         $escuela=Escuela::where('user_id',$id)->first();       
+         $grupos=Grupo::where('escuela_id',$escuela->id)->OrderBy('name')->get();
+         // dd($grupos); 
     	return view('escuela.alumnos.create')->with(compact('grupos')); // formulario registro alumnos
     }
 
@@ -32,7 +43,7 @@ class AlumnoController extends Controller
             'name'=>'required|max:255',
             'email'=>'required|email|max:255|unique:users',
             'password'=>'required|min:8',
-            'matricula'=>'required',              
+            'clave'=>'required',              
             'password_confirmation' => 'required|min:8|same:password',
         ];
 
@@ -44,31 +55,43 @@ class AlumnoController extends Controller
                 'email.unique'=>'El email ya se encuentra en uso',
                 'password.requiered'=>'Olvido ingresar una contraseña',
                 'password.min'=>'La contraseña debe tener por lo menos 8 carracteres',
-                'matricula.required'=>'Es necesario ingresar una clave',
+                'clave.required'=>'Es necesario ingresar una clave',
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
             ];
 
 
+
         $this->validate($request,$rules, $messages);
+
+        $id=auth()->user()->id;
+        $escuela=Escuela::where('user_id',$id)->first();
+
     	$user= new User();
     	$user->name = $request->input('name');    	
-    	$user->email=$request->input('email');
-    	$user->matricula=$request->input('matricula');
-        $user->clave_escuela=auth()->user()->clave;                                                            
+    	$user->email=$request->input('email'); 	                                                            
     	$user->role=3;
-        $user->grupo_id = $request->grupo_id == 0 ? null : $request->grupo_id; 
         $user->password= bcrypt($request->input('password')); 
         $user->save();
+
+        $alumno= new Alumno();
+        $alumno->clave=$request->input('clave');
+        $alumno->escuela_id=$escuela->id;
+        $alumno->user_id=$user->id;
+        $alumno->grupo_id = $request->grupo_id == 0 ? null : $request->grupo_id;
+        $alumno->save();       
+
+
         return redirect('escuela/alumnos')->with('notification', 'alumno registrado exitosamente.');
 	}
 
 	  public function edit($id)
     {
-        $user=User::find($id);
-        $clave=auth()->user()->clave;
-        $grupos=Grupo::where('clave_escuela',$clave)->OrderBy('name')->get();
-        return view('escuela.alumnos.edit')->with(compact('user', 'grupos')); // formulario de edicion
+          $alumno=Alumno::find($id);
+          $user=User::where('id',$alumno->user_id)->first();
+          $escuela=Escuela::where('user_id',$id)->first();       
+          $grupos=Grupo::where('escuela_id',$alumno->escuela_id)->OrderBy('name')->get();
+        return view('escuela.alumnos.edit')->with(compact('alumno', 'grupos','user')); // formulario de edicion
     }
 
     public function update(Request $request, $id)
@@ -76,8 +99,7 @@ class AlumnoController extends Controller
 
           $rules =[
             'name'=>'required|max:255',
-            'email'=>'required|email|max:255',            
-            'matricula'=>'required',              
+            'email'=>'required|email|max:255',             
             'password_confirmation' => 'same:password',
         ];
 
@@ -100,23 +122,30 @@ class AlumnoController extends Controller
 
         //registrar en la BD
         // dd($request->all());
-        $user= User::find($id);
-        $user->name = $request->input('name');      
+        $alumno=Alumno::find($id);
+        $user=User::where('id',$alumno->user_id)->first();  
+        $user->name=$request->input('name');
         $user->email=$request->input('email');
-        $user->matricula=$request->input('matricula');
-        $user->grupo_id = $request->grupo_id == 0 ? null : $request->grupo_id; 
         $password=$request->input('password');
         if($password)
             $user->password=bcrypt($password);        
         $user->save();  //update
 
+        $alumno->clave=$request->input('clave');
+        $alumno->grupo_id = $request->grupo_id == 0 ? null : $request->grupo_id;
+        $alumno->save();
         return redirect('escuela/alumnos')->with('notification', 'alumno modificado exitosamente');
     }
 
       public function destroy($id)
     {   
-        $user= User::find($id);              
-        $user->delete();  //eliminar
+        $alumno=Alumno::find($id);
+        $user=User::where('id',$alumno->user_id)->first(); 
+      
+
+        $user->delete();
+
+        $alumno->delete();  //eliminar
 
         return redirect('escuela/alumnos')->with('notification', 'alumno eliminado exitosamente');
     }

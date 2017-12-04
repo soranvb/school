@@ -27,26 +27,26 @@
 
                         <div class="row">
 
-                             <div class="col-sm-4">
+                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">face</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Nombre" name="name"
+                                    <input type="text" class="form-control" placeholder="Nombre escuela" name="name"
                                            value="{{ old('name') }}" required autofocus>
                                 </div>
                             </div>   
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">fingerprint</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}" required>
+                                    <input type="text" class="form-control" placeholder="Clave escuela" name="clave" value="{{ old('Clave') }}" required>
                                 </div>                           
                             </div> 
 
-                            <div class="col-sm-4">  
+                            <div class="col-sm-6">  
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">email</i>
@@ -55,16 +55,16 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-4"> 
+                           <!--  <div class="col-sm-6"> 
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">school</i>
                                     </span>
                                     <input id="clave" type="clave" placeholder="Clave" class="form-control" name="clave" value="{{ old('clave') }}" required>
                                 </div>
-                            </div>   
+                            </div>    -->
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
@@ -73,7 +73,7 @@
                                 </div>
                             </div> 
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                     <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
@@ -81,7 +81,7 @@
                                     <input placeholder="Confirmar contraseña" type="password" class="form-control" name="password_confirmation" required />
                                     </div>
                             </div>
-                                 <div class="footer text-center">  
+                                 <div class="footer text-center col-sm-12">  
                                  <button class="btn btn-primary">Registrar escuela</button>
                                  <a href="{{ url('/admin/escuelas') }}" class="btn btn-default">Cancelar</a>
                             </div>

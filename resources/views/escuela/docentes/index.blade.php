@@ -25,51 +25,51 @@
                            <table class="table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Matricula</th>
+                                    <th class="text-center">Clave</th>
                                     <th class="col-md-2 text-center" >Nombre</th>
-                                    <th class="col-md-2 text-center">Grupos Asignados </th>
+                                    <!-- <th class="col-md-2 text-center">xxxx</th> -->
                                     <th class="col-md-2 text-center">Fecha Registro</th>
                                     <th class="text-center">E-mail</th>
+                                    <th class="text-center">Asignaturas asignadas</th>
                                     <th class="text-right">Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($docentes as $user)
                                 <tr>
-                                    <td class="text-center">{{$user->matricula}}</td>
+                                    <td class="text-center">{{$user->id}}</td>
                                     <td>{{$user->name}}</td>
-                                    <td>{{$user->name}}</td>
+                                    <!-- <td>$user->grupo->name</td> --> <!--CON  ESTE SE TRAE LOS DATOS ASOCIADOS CON GRUPO -->
                                     <td>{{ Carbon\Carbon::parse($user->created_at)->format('d-m-Y') }}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>x</td>
                                     <td class="td-actions text-right">
-                                       
-                                        
-                                        <form method="post" action="{{ url('escuela/docentes/'.$user->id) }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
 
-                                            <a href="{{url('escuela/docentes/'.$user->id.'/images')}}" rel="tooltip" title="Cambiar imagen" class="btn btn-warning btn-simple btn-xs">
-                                                <img src="/school/public/images/users/{{$user->avatar }}" width="20">
-                                            </a>
+                                            <a href="{{url('escuela/docentes/'.$user->id.'/images')}}" rel="tooltip" title="Cambiar imagen" class="btn btn-warning btn-simple btn-xs">                                                
+                                                 <img src="/school/public/images/users/{{$user->avatar }}" width="20">
+                                            </a>                                             
 
                                              <a href="#" rel="tooltip" title="Ver docente" class="btn btn-info btn-simple btn-xs">
                                              <i class="fa fa-user"></i>
-                                        </a>                                        
+                                             </a>                       
 
-                                        <a href="{{url('escuela/docentes/'.$user->id.'/edit')}}" rel="tooltip" title="Editar docente" class="btn btn-success btn-simple btn-xs">
+                                             <a href="#" rel="tooltip" title="Asignaturas asignadas" class="btn btn-warning btn-simple btn-xs">
+                                             <i class="fa fa-group"></i>
+                                            </a>                 
+
+                                            <a href="{{url('escuela/docentes/'.$user->id.'/edit')}}" rel="tooltip" title="Editar docente" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>
-                                        </a>
+                                            </a>
 
-                                            <button type="submit" rel="tooltip" title="Eliminar docente" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </form>
+                                            <a href="{{url('escuela/docentes/'.$user->id.'/eliminar')}}" rel="tooltip" title="Dar de baja " class="btn btn-danger btn-simple btn-xs">
+                                            <i class="fa fa-times"></i>
+                                        </a>                                   
                                     </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
                                 </table>
-                                {{ $users->links() }}
+                                {{ $docentes->links() }}
                         </div>
                     </div>
                 </div>

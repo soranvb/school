@@ -16,6 +16,10 @@ class ImageController extends Controller
 
      public function store(Request $request, $id)
     {
+
+//         $this->validate($request, [
+//     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=500,height=500',
+// ]);
     	// guardar la img en nuestro proyecto
     	$file = $request->file('photo');
     	$path = public_path() . '/images/users';

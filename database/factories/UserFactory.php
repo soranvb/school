@@ -22,9 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(100),       
         'role' => $faker->numberBetween(2,3),
-        'clave_escuela'=> $faker->numberBetween(1,10),
-        'matricula' => $faker->unique()->numberBetween(20,1000000),
-        'grupo_id'=>$faker->numberBetween(1,3)
+        'clave' => $faker->numberBetween(1,1000000),
 
     ];
 });

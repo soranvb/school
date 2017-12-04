@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Grupo;
 use App\Asignatura;
+use App\Escuela;
+use App\Docentes_asignatura;
 use Auth;
 use Illuminate\Http\Request;
 use Validator, Input, Redirect; 
@@ -14,8 +16,11 @@ class GrupoController extends Controller
 {
      public function index()
     {
-    	$clave=auth()->user()->clave;    	
-    	$grupos=Grupo::where('clave_escuela',$clave)->paginate(10);
+    	$id=auth()->user()->id;
+         $escuela=Escuela::where('user_id',$id)->first();     	
+    	 $grupos=Grupo::where('escuela_id',$escuela->id)->paginate(10);
+
+         // dd($grupos);
    		return view('escuela.grupos.index')->with(compact('grupos')); //listado de  grupos
      }
 
@@ -26,34 +31,30 @@ class GrupoController extends Controller
 
      public function store(Request $request)
     {
-    	$clave=auth()->user()->clave;
 
         $rules =[
             'name'=>'required|max:255',
             'clave'=>'required',
-            // 'clave'  =>  'required|unique:grupos,clave_escuela,'.$clave,
-            // 'clave' => Rule::unique('grupos')->where($clave, 'clave_escuela'),
-            'turno'=>'max:255',            
-            
+            'descripcion'=>'max:255',
+
         ];
 
         $messages=[
                 'name.requiered'=>'Es necesario ingresar el nombre de la grupo',
                 'name.max'=>'El nombre es demasiado extenso',                
                 'descripcion.max'=>'La descripcion es demasiada extensa',            
-                'clave.required'=>'Es necesario ingresar una clave',
-              
+                'clave.required'=>'Es necesario ingresar una clave',              
             ];
-
-
         $this->validate($request,$rules, $messages);
 
-    	//registrar en la BD
-    	// dd($request->all());
+        $id=auth()->user()->id;
+        $escuela=Escuela::where('user_id',$id)->first();
+
     	$grupo= new Grupo();
     	$grupo->name = $request->input('name');    	
-    	$grupo->clave=$request->input('clave');    	
-        $grupo->clave_escuela=auth()->user()->clave;       
+    	$grupo->clave=$request->input('clave');
+        $grupo->descripcion=$request->input('descripcion');     	
+        $grupo->escuela_id=$escuela->id;       
         $grupo->save();
        return redirect('escuela/grupos')->with('notification', 'grupo registrado exitosamente.');                                                                                     
     }
@@ -69,13 +70,15 @@ class GrupoController extends Controller
     {
     	 $rules =[
             'name'=>'required|max:255',
+            'descripcion'=>'max:255',
             'clave'=>'required',           
             
         ];
 
         $messages=[
                 'name.requiered'=>'Es necesario ingresar el nombre de la Asignatura',
-                'name.max'=>'El nombre es demasiado extenso',            
+                'name.max'=>'El nombre es demasiado extenso',
+                'descripcion.max'=>'La descripcion es demasiado extensa',              
                 'clave.required'=>'Es necesario ingresar una clave',
               
             ];
@@ -84,7 +87,8 @@ class GrupoController extends Controller
 
         $grupo=Grupo::find($id);
     	$grupo->name = $request->input('name');    	
-    	$grupo->clave=$request->input('clave');          
+    	$grupo->clave=$request->input('clave');
+        $grupo->descripcion=$request->input('descripcion');              
         $grupo->save();
         return redirect('escuela/grupos')->with('notification', 'Grupo editado exitosamente.'); 
     }

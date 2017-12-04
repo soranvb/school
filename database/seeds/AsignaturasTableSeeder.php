@@ -16,31 +16,31 @@ class AsignaturasTableSeeder extends Seeder
         
     	Asignatura::create
         ([
-        	'name'=>'Español',        	
-            'clave'=>('1'), 
-            'descripcion'=>'esta es una materia de español',
-            'grupo_id'=>('1'),
-            'clave_escuela'=>('10'), 
-            'docente_id'=>('7'),              
-        ]);
+        // 	'name'=>'Español',        	
+        //     'clave'=>('1'), 
+        //     'descripcion'=>'esta es una materia de español',
+        //     // 'grupo_id'=>('1'),
+        //     'clave_escuela'=>('10'), 
+                          
+        // ]);
 
-        Asignatura::create
-        ([
-        	'name'=>'Matematicas',        	
-            'clave'=>('2'), 
-            'descripcion'=>'esta es una materia de materia',
-            'grupo_id'=>('1'), 
-            'clave_escuela'=>('10'),
-            'docente_id'=>('5'),              
-        ]);
-         Asignatura::create
-        ([
-        	'name'=>'Biologia',        	
-            'clave'=>('3'), 
-            'descripcion'=>'esta es una materia de hablar',
-            'grupo_id'=>('1'), 
-            'clave_escuela'=>('10'),
-             'docente_id'=>('6'),              
+        // Asignatura::create
+        // ([
+        // 	'name'=>'Matematicas',        	
+        //     'clave'=>('2'), 
+        //     'descripcion'=>'esta es una materia de materia',
+        //     // 'grupo_id'=>('1'), 
+        //     'clave_escuela'=>('10'),
+                          
+        // ]);
+        //  Asignatura::create
+        // ([
+        // 	'name'=>'Biologia',        	
+        //     'clave'=>('3'), 
+        //     'descripcion'=>'esta es una materia de hablar',
+        //     // 'grupo_id'=>('1'), 
+        //     'clave_escuela'=>('10'),
+                           
         ]);
     }
 }

@@ -21,47 +21,38 @@
                     
                     <div class="team">
                         <div class="row">
-                             <!-- <a href="{{ url('/escuela/asignaturas/create') }}" class="btn btn-primary btn-round">Registrar nueva asignatura</a> -->
+                             <!-- <a href="{{ url('/escuela/asignaturas/create') }}" class="btn btn-primary btn-round">Registrar nueva a</a> -->
                            <table class="table">
                                 <thead>
                                 <tr>
                                     <th class="text-center">Clave</th>
                                     <th class="col-md-2 text-center" >Nombre</th>
                                     <th class="col-md-2 text-center">Grupo</th>
-                                    <th class="col-md-2 text-center">Maestro</th>
-                                    <th class="col-md-2 text-center">Matricula maestro</th>                                     
+                                    <th class="col-md-2 text-center">Descripcion</th>                                    
                                     <th class="text-right">Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($asignaturas as $asignatura)
+                                    @foreach ($asignaturas as $a)
                                 <tr>
-                                    <td class="text-center">{{$asignatura->clave}}</td>
-                                    <td>{{$asignatura->name}}</td>
-                                    <td>{{$asignatura->grupo ? $asignatura->grupo->name : 'Sin asignar'}}</td>
-                                    <td>{{$asignatura->users ? $asignatura->users->name : 'Sin asignar'}}</td>
-                                     <td>{{$asignatura->users ? $asignatura->users->matricula : 'Sin asignar'}}</td>
+                                    <td class="text-center"> {{$a->id}}</td>
+                                    <td>{{$a->name}}</td>
+                                     <td>{{$a->escuela_id ? $a->escuela_id : 'Sin asignar'}}</td>
+                                    <td>{{$a->descripcion}}</td>
 
                                     
                                     <td class="td-actions text-right">
-                                       
-                                        
-                                        <form method="post" action="{{ url('escuela/asignaturas/'.$asignatura->id) }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}  
 
                                              <a href="#" rel="tooltip" title="Ver asignatura" class="btn btn-info btn-simple btn-xs">
                                              <i class="fa fa-user"></i>
-                                        </a>                                        
+                                            </a>                                        
 
-                                        <a href="{{url('escuela/asignaturas/'.$asignatura->id.'/edit')}}" rel="tooltip" title="Editar asignatura" class="btn btn-success btn-simple btn-xs">
+                                            <a href="{{url('escuela/asignaturas/'.$a->id.'/edit')}}" rel="tooltip" title="Editar asignatura" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>
-                                        </a>
+                                            </a>
 
-                                            <button type="submit" rel="tooltip" title="Eliminar asignatura" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </form>
+                                             <a href="{{url('escuela/asignaturas/'.$a->id.'/eliminar')}}" rel="tooltip" title="Dar de baja " class="btn btn-danger btn-simple btn-xs">
+                                            <i class="fa fa-times"></i>                                      
                                     </td>
                                 </tr>
                                 @endforeach

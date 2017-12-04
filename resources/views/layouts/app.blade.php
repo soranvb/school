@@ -108,7 +108,7 @@
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li class="dropdown-header"></li>
                                                  <li><a href="{{ url('/escuela/grupos') }}">Listado de grupos</a></li> 
-                                                 <li><a href="{{ url('/escuela/grupos/create') }}">Registrar nueva grupos</a></li>                                               
+                                                 <li><a href="{{ url('/escuela/grupos/create') }}">Registrar nuevo grupo</a></li>                                               
                                             </ul>
                                         </li>    
 

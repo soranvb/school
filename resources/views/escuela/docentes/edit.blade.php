@@ -37,7 +37,7 @@
 
                         <div class="row">
 
-                             <div class="col-sm-5">
+                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">face</i>
@@ -47,34 +47,25 @@
                                 </div>
                             </div>   
 
-                            <div class="col-sm-5">
+                            <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">fingerprint</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="matricula" name="matricula" value="{{ $user->matricula }}" required>
+                                    <input type="text" class="form-control" placeholder="clave" name="clave" value="{{ $user->clave }}" required>
                                 </div>                           
                             </div> 
 
-                            <div class="col-sm-5">  
+                            <div class="col-sm-6">  
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">email</i>
                                     </span>
                                     <input id="email" type="email" placeholder="Correo electrónico" class="form-control" name="email" value="{{ $user->email }}" requiered>
                                 </div>
-                            </div>
+                            </div>                   
 
-                            <div class="col-sm-5"> 
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">school</i>
-                                    </span>
-                                    <input id="clave" type="materia" placeholder="materia" class="form-control" name="materia" value="x{{ $user->materia }}" required>
-                                </div>
-                            </div>   
-
-                            <div class="col-sm-5">
+                            <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
@@ -83,17 +74,58 @@
                                 </div>
                             </div> 
 
-                             <div class="col-sm-4">
+                             <div class="col-sm-6">
                                     <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
                                     </span>
                                     <input placeholder="Confirmar contraseña" type="password" class="form-control" name="password_confirmation"  />
                                     </div>
-                            </div>
-
+                            </div>                    
+                        <div class="footer text-center col-sm-12"> 
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">#</th>
+                                        <th>Name</th>
+                                        <th>Job Position</th>
+                                        <th>Since</th>
+                                        <th class="text-right">Salary</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                @foreach ($docentes_asignaturas as $a)
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td>{{$a->asignatura_id}}</td>
+                                        <td>{{$a->grupo_id}}</td> 
+                                          <td>{{$a->name}}</td> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    
+                         
+                                     
+                                </tbody>
+                            </table>
+                        </div>
+            
                             
-                                 <div class="footer text-center col-sm-5">  
+                                 <div class="footer text-center col-sm-12">  
+                                    <button class="btn btn-primary">Asignar asignatura</button>
+                                    <table class="table">
+                                <thead>
+                                <tr>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                   <td></td>
+                                <tr>
                                  <button class="btn btn-primary">Guardar cambios</button>
                                  <a href="{{ url('/escuela/docentes') }}" class="btn btn-default">Cancelar</a>
                             </div>

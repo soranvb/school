@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Asignatura extends Model
 {
+    use SoftDeletes;
+	protected $table = "asignaturas";
+
      public function grupo()
         {
             return $this->belongsTo(Grupo::class);

@@ -16,9 +16,10 @@ class UsersTableSeeder extends Seeder
         ([
         	'name'=>'Administrador',
         	'email'=>'admin@hotmail.com',
-        	'password'=> bcrypt('asdqwe123'),        	
-            'clave'=>('0'),
+        	'password'=> bcrypt('asdqwe123'),       	
         	'role'=>0,
+            'clave'=>50232,
+
         ]);
 
         User::create
@@ -26,8 +27,8 @@ class UsersTableSeeder extends Seeder
             'name'=>'Cobaes',
             'email'=>'cobaes@hotmail.com',
             'password'=> bcrypt('asdqwe123'),            
-            'clave'=>('10'),
             'role'=>1,
+            'clave'=>5564743,
         ]);
 
         User::create
@@ -35,20 +36,20 @@ class UsersTableSeeder extends Seeder
             'name'=>'UAS',
             'email'=>'uas@hotmail.com',
             'password'=> bcrypt('asdqwe123'),           
-            'clave'=>('5'),
             'role'=>1,
+            'clave'=>123424,
         ]);
 
         User::create
         ([
             'name'=>'ITC',
             'email'=>'itc@hotmail.com',
-            'password'=> bcrypt('asdqwe123'),           
-            'clave'=>('3'),
+            'password'=> bcrypt('asdqwe123'),  
             'role'=>1,
+            'clave'=>23213,
         ]);
 
-        
+        factory(User::class,50)->create();       
 
     }
 }

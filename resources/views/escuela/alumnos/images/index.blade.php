@@ -11,6 +11,13 @@
         <div class="section text-center">
             <h2 class="title">Imágen del alumno "{{ $user->name }}"</h2>
 
+            
+                    @if (session('notification'))
+                        <div class="alert alert-success">
+                            {{ session('notification') }}
+                        </div>
+                    @endif
+
             <form method="post" action="" enctype="multipart/form-data">
                 {{ csrf_field() }}
                

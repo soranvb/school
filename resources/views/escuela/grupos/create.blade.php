@@ -44,14 +44,14 @@
                                 </div>                           
                             </div> 
 
-                            <div class="col-sm-6">  
+                             <div class="col-sm-6">  
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">description</i>
                                     </span>
-                                    <input id="text" type="text" placeholder="Turno" class="form-control" name="Turno" value="{{ old('Turno') }}" requiered>
+                                    <input id="text" type="text" placeholder="Descripcion" class="form-control" name="descripcion" value="{{ old('descripcion') }}" requiered>
                                 </div>
-                            </div>
+                             </div>         
 
                         
                                  <div class="footer text-center col-sm-12">  

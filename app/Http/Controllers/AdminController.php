@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Escuela;
+use App\Docente;
 
 class AdminController extends Controller
 {
 
     public function index()
-    {
-    	$users=User::where('role',1)->paginate(10);
-    	return view('admin.escuelas.index')->with(compact('users')); //listado de escuelas
+    {        
+    	// $users=User::where('role',1)->paginate(10);
+        $escuelas=Escuela::join('users', 'users.id', '=', 'user_id' )->orderBy('name')->paginate(10);
+    	return view('admin.escuelas.index')->with(compact('escuelas')); //listado de escuelas
     }
 
     public function create()
@@ -27,7 +30,7 @@ class AdminController extends Controller
             'email'=>'required|email|max:255|unique:users',
             'password'=>'required|min:8',
             'clave'=>'required|unique:users',
-            'password_confirmation.same' => 'Las contraseñas no coinciden',
+            'password_confirmation' => 'min:6|same:password',
         ];
 
         $messages=[
@@ -57,6 +60,10 @@ class AdminController extends Controller
     	$user->role=(1);
     	$user->save();
 
+        $escuela= new escuela();
+        $escuela->user_id=$user->id;
+        $escuela->save();
+
     	return redirect('admin/escuelas')->with('notification', 'usuario registrado exitosamente.');
     }
 
@@ -69,7 +76,29 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
 
+         $rules =[
+            'name'=>'required|max:255',
+            // 'email'=>'required|email|max:255|unique:users',
+            
+            'clave'=>'required',
+            'password_confirmation' => 'min:6|same:password',
+        ];
 
+        $messages=[
+                'name.requiered'=>'Es necesario ingresar el nombre del usuario',
+                'name.max'=>'El nombre es demasiado extenso',
+                'email.requiered'=>'Es necesario ingresar email',
+                'email.max'=>'Este email es demasiado extenso',
+                'email.unique'=>'El email ya se encuentra en uso',
+                'password.requiered'=>'Olvido ingresar una contraseña',  
+                'clave.required'=>'Es necesario ingresar una clave',
+                'clave.unique'=>'La clave ya se encuentra en uso',
+                'password_confirmation.same' => 'Las contraseñas no coinciden',
+                'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
+            ];
+
+
+        $this->validate($request,$rules, $messages);
         //registrar en la BD
         // dd($request->all());
         $user= User::find($id);
@@ -80,14 +109,14 @@ class AdminController extends Controller
         if($password)
             $user->password=bcrypt($password);        
         $user->save();  //update
-
         return redirect('admin/escuelas')->with('notification', 'usuario modificado exitosamente');
     }
 
-
       public function destroy($id)
     {   
-        $user= User::find($id);              
+        $user= User::find($id); 
+        $escuela=Escuela::where('user_id',$id)->first();
+        $escuela->delete();             
         $user->delete();  //eliminar
 
         return redirect('admin/escuelas')->with('notification', 'usuario eliminado exitosamente');
@@ -95,9 +124,9 @@ class AdminController extends Controller
 
     public function profile($id)
     {
-         $user=User::find($id);
+
+        $user=User::find($id);
+
         return view('admin/escuelas/profile')->with(compact('user'));;
     }
-
-
 }

@@ -51,16 +51,7 @@
                                     </span>
                                     <input id="text" type="text" placeholder="Descripcion" class="form-control" name="descripcion" value="{{ old('descripcion') }}" requiered>
                                 </div>
-                            </div>
-
-                            <div class="col-sm-6"> 
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">group</i>
-                                    </span>
-                                    <input id="grupo" type="number" placeholder="grupo" class="form-control" name="grupo" value="{{ old('grupo') }}" required>
-                                </div>
-                            </div>   
+                            </div>                            
                             
                                  <div class="footer text-center col-sm-12">  
                                  <button class="btn btn-primary">Registrar asignatura</button>

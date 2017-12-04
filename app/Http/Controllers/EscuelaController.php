@@ -5,28 +5,32 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Grupo;
 use App\Asignatura;
+use App\Docente;
+use App\Escuela;
+use App\Docentes_asignatura;
 use Auth;
 use Illuminate\Http\Request;
+use DB;
 
 class EscuelaController extends Controller
 {
     
-    public function index()
+
+     public function index()
     {
-    	$clave=auth()->user()->clave;    	
-    	$users=User::where('clave_escuela',$clave)->paginate(10);
-        // $asignaturas=Asignatura::where('clave_escuela',$clave)->get();
-
-
-
-        
-
-   		return view('escuela.docentes.index')->with(compact('users')); //listado de  docentes
-     }
-
+        $id=auth()->user()->id;
+        $escuela=Escuela::where('user_id',$id)->first();
+        $docentes=Docente::where('escuela_id',$escuela->id)
+        ->join('users', 'users.id', '=', 'user_id' )
+        // ->where('users.role','2')
+        ->paginate(10);   
+        return view('escuela.docentes.index')->with(compact('docentes')); //listado de  docente
+    }   
     public function create()
-    {
-    	return view('escuela.docentes.create'); // formulario registro docentes
+    {        
+        $asignaturas=Asignatura::where('escuela_id',auth()->user())->OrderBy('name')->get();
+        $grupos=Grupo::where('escuela_id',auth()->user())->OrderBy('name')->get();
+    	return view('escuela.docentes.create')->with(compact('asignaturas','grupos')); // formulario registro docentes
     }
 
     public function store(Request $request)
@@ -36,7 +40,7 @@ class EscuelaController extends Controller
             'name'=>'required|max:255',
             'email'=>'required|email|max:255|unique:users',
             'password'=>'required|min:8',
-            'matricula'=>'required',              
+            'clave'=>'required',              
             'password_confirmation' => 'required|min:8|same:password',
         ];
 
@@ -48,7 +52,7 @@ class EscuelaController extends Controller
                 'email.unique'=>'El email ya se encuentra en uso',
                 'password.requiered'=>'Olvido ingresar una contraseña',
                 'password.min'=>'La contraseña debe tener por lo menos 8 carracteres',
-                'matricula.required'=>'Es necesario ingresar una clave',
+                'clave.required'=>'Es necesario ingresar una clave',
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
             ];
@@ -58,22 +62,61 @@ class EscuelaController extends Controller
 
     	//registrar en la BD
     	// dd($request->all());
+
+        $id=auth()->user()->id;
+        $escuela=Escuela::where('user_id',$id)->first();
+
+
     	$user= new User();
     	$user->name = $request->input('name');    	
     	$user->email=$request->input('email');
-    	$user->matricula=$request->input('matricula');
-        $user->clave_escuela=auth()->user()->clave;
+    	$user->clave=$request->input('clave');       
         $user->role=2;                                                                 
-           $user->password= bcrypt($request->input('password')); 
-           $user->save();
-       return redirect('escuela/docentes')->with('notification', 'usuario registrado exitosamente.');                                                                                      		
+        $user->password= bcrypt($request->input('password')); 
+        $user->save();
+        
+        $docente= new Docente();
+        $docente->escuela_id=$escuela->id;
+        $docente->user_id=$user->id;
+        $docente->save();        
+        
+        if($request->input('asignatura_id') != '0')
+        {
+             $docentes_asignaturas= new Docentes_asignatura();
+             $docentes_asignaturas->asignatura_id=$request->input('asignatura_id');
+             if($request->input('grupo_id') != '0')
+             {                
+                $docentes_asignaturas->grupo_id=$request->input('grupo_id');
+             }
+             else
+             {
+                $docentes_asignaturas->grupo_id = null;
+             }
+             $docentes_asignaturas->save();   
+        }
+        // $docentes_asignaturas= new Docentes_asignatura();
+        // $docentes_asignaturas->asignatura_id = $request->asignatura_id == 0 ? null : $request->asignatura_id; 
+        // $docentes_asignaturas->docente_id=$user->id;
+        // $docentes_asignaturas->grupo_id = $request->grupo_id == 0 ? null : $request->grupo_id; 
+        // $docentes_asignaturas->save();       
+        
+        return redirect('escuela/docentes')->with('notification', 'usuario registrado exitosamente.');                                                                                      		
     	  
     }
 
      public function edit($id)
     {
         $user=User::find($id);
-        return view('escuela.docentes.edit')->with(compact('user')); // formulario de edicion
+        // $asignaturas=Asignatura::where('escuela_id',auth()->user())->OrderBy('name')->get();
+        // $grupos=Grupo::where('escuela_id',auth()->user())->OrderBy('name')->get();
+        $docente=Docente::where('user_id' ,'=',$id)->first();
+         // dd($docente->id);
+        $docentes_asignaturas=Docentes_asignatura::where('docente_id','=',$docente->id)
+        ->join('asignaturas', 'asignaturas.id', '=', 'asignatura_id' )->get();
+
+        
+
+        return view('escuela.docentes.edit')->with(compact('user','docentes_asignaturas')); // formulario de edicion
     }
 
     public function update(Request $request, $id)
@@ -82,7 +125,7 @@ class EscuelaController extends Controller
           $rules =[
             'name'=>'required|max:255',
             'email'=>'required|email|max:255',            
-            'matricula'=>'required',              
+            'clave'=>'required',              
             'password_confirmation' => 'same:password',
         ];
 
@@ -94,7 +137,7 @@ class EscuelaController extends Controller
                 'email.unique'=>'El email ya se encuentra en uso',
                 'password.requiered'=>'Olvido ingresar una contraseña',
                 'password.min'=>'La contraseña debe tener por lo menos 8 carracteres',
-                'matricula.required'=>'Es necesario ingresar una clave',
+                'clave.required'=>'Es necesario ingresar una clave',
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
             ];
@@ -106,23 +149,41 @@ class EscuelaController extends Controller
         //registrar en la BD
         // dd($request->all());
         $user= User::find($id);
+        $docente=Docente::where('user_id','=',$id);  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<        
         $user->name = $request->input('name');      
         $user->email=$request->input('email');
-        $user->matricula=$request->input('matricula');
+        $user->clave=$request->input('clave'); 
         $password=$request->input('password');
         if($password)
             $user->password=bcrypt($password);        
         $user->save();  //update
+
+        // if($request->input('asignatura_id') != '0')
+        // {
+        //      $docentes_asignaturas= Docentes_asignatura::find($id);
+        //      $docentes_asignaturas->asignatura_id=$request->input('asignatura_id');
+        //      if($request->input('grupo_id') != '0')
+        //      {                
+        //         $docentes_asignaturas->grupo_id=$request->input('grupo_id');
+        //      }
+        //      else
+        //      {
+        //         $docentes_asignaturas->grupo_id = null;
+        //      }
+        //      $docentes_asignaturas->save();   
+        // }
 
         return redirect('escuela/docentes')->with('notification', 'docente modificado exitosamente');
     }
 
      public function destroy($id)
     {   
-        $user= User::find($id);              
+        $user= User::find($id);
+        $docente=Docente::where('user_id',$id)->first();
+        $docente->delete();                 
         $user->delete();  //eliminar
 
-        return redirect('escuela/docentes')->with('notification', 'docente eliminado exitosamente');
+        return redirect('escuela/docentes')->with('notification', 'Docente eliminado exitosamente');
     }
 
 }

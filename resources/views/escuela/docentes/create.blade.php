@@ -27,7 +27,7 @@
 
                         <div class="row">
 
-                             <div class="col-sm-4">
+                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">face</i>
@@ -37,16 +37,16 @@
                                 </div>
                             </div>   
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">fingerprint</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="matricula" name="matricula" value="{{ old('matricula') }}" required>
+                                    <input type="text" class="form-control" placeholder="Clave del docente" name="clave" value="{{ old('clave') }}" required>
                                 </div>                           
                             </div> 
 
-                            <div class="col-sm-4">  
+                            <div class="col-sm-6">  
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">email</i>
@@ -55,16 +55,8 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-4"> 
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">school</i>
-                                    </span>
-                                    <input id="asignatura" type="asignatura" placeholder="asignatura" class="form-control" name="asignatura" value="{{ old('asignatura') }}" required>
-                                </div>
-                            </div>   
-
-                            <div class="col-sm-4">
+                         
+                            <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
@@ -73,7 +65,7 @@
                                 </div>
                             </div> 
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                     <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
@@ -81,7 +73,39 @@
                                     <input placeholder="Confirmar contraseña" type="password" class="form-control" name="password_confirmation" required />
                                     </div>
                             </div>
-                                 <div class="footer text-center">  
+
+
+                             <div class="col-sm-6 text-center ">
+                                <div class="form-group label-floating  ">
+                                    <label class="control-label">Asignar asignatura</label>
+                                    <select class="form-control" name="asignatura_id">
+                                        <option value="0">Sin Asignar</option>
+                                        @foreach ($asignaturas as $asignatura)
+                                        <option value="{{ $asignatura->id }}" >{{ $asignatura->name }}</option>
+
+                                                                             
+                                        @endforeach 
+                                    </select>
+                                    </div>
+                                </div>
+                             </div>
+
+                             <div class="col-sm-6 text-center ">
+                                <div class="form-group label-floating  ">
+                                    <label class="control-label">Asignar grupo</label>
+                                    <select class="form-control" name="grupo_id">
+                                        <option value="0">Sin Asignar</option>
+                                        @foreach ($grupos as $grupo)
+                                        <option value="{{ $grupo->id }}" >{{ $grupo->name }}</option>
+
+                                                                             
+                                        @endforeach 
+                                    </select>
+                                    </div>
+                                </div>
+                             </div>
+                                 
+                                 <div class="footer text-center col-sm-12">  
                                  <button class="btn btn-primary">Registrar docente</button>
                                  <a href="{{ url('/escuela/docentes') }}" class="btn btn-default">Cancelar</a>
                             </div>

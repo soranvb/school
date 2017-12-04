@@ -40,7 +40,7 @@
                                     <span class="input-group-addon">
                                         <i class="material-icons">fingerprint</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="matricula" name="matricula" value="{{ old('matricula') }}" required>
+                                    <input type="text" class="form-control" placeholder="Clave" name="clave" value="{{ old('clave') }}" required>
                                 </div>                           
                             </div> 
 

@@ -27,41 +27,26 @@
                                 <tr>
                                     <th class="text-center">Clave</th>
                                     <th class="col-md-2 text-center" >Nombre</th>
-                             <!--        <th class="col-md-2 text-center">x</th>
-                                    <th class="col-md-2 text-center">x</th>
-                                    <th class="col-md-2 text-center">x</th>   -->                                   
+                                    <th class="col-md-4 text-center" >Descripcion</th>                                                                 
                                     <th class="text-right">Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($grupos as $grupo)
                                 <tr>
-                                    <td class="text-center">{{$grupo->clave}}</td>
+                                    <td class="text-center">{{$grupo->id}}</td>
                                     <td>{{$grupo->name}}</td>
-                                <!--     <td></td>
-                                    <td>x</td>
-                                    <td>x</td>
- -->
-                                    
-                                    <td class="td-actions text-right">
-                                       
-                                        
-                                        <form method="post" action="{{ url('escuela/grupos/'.$grupo->id) }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}  
+                                    <td>{{$grupo->descripcion}}</td>
+                                    <td class="td-actions text-right">                                      
 
-                                             <a href="#" rel="tooltip" title="Ver grupo" class="btn btn-info btn-simple btn-xs">
-                                             <i class="fa fa-user"></i>
-                                        </a>                                        
-
-                                        <a href="{{url('escuela/grupos/'.$grupo->id.'/edit')}}" rel="tooltip" title="Editar grupo" class="btn btn-success btn-simple btn-xs">
+                                            <a href="#" rel="tooltip" title="Ver grupo" class="btn btn-info btn-simple btn-xs">
+                                            <i class="fa fa-user"></i>
+                                            </a>                                        
+                                            <a href="{{url('escuela/grupos/'.$grupo->id.'/edit')}}" rel="tooltip" title="Editar grupo" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>
-                                        </a>
-
-                                            <button type="submit" rel="tooltip" title="Eliminar grupo" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </form>
+                                            </a>
+                                            <a href="{{url('escuela/grupos/'.$grupo->id.'/eliminar')}}" rel="tooltip" title="Dar de baja " class="btn btn-danger btn-simple btn-xs">
+                                            <i class="fa fa-times"></i>      
                                     </td>
                                 </tr>
                                 @endforeach

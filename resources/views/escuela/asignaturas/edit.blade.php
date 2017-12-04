@@ -6,20 +6,13 @@
    <div class="header header-filter" style="background-image: url('https://images.unsplash.com/photo-1423655156442-ccc11daa4e99?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450');">    
    </div>
         <div class="main main-raised">
-            <div class="container">         
-
-                    
+            <div class="container">       
                 <div class="section">
-
-
                     <h2 class="title text-center">Editar asignatura seleccionado</h2>
-
                       <div class="alert alert-dismissible alert-info text-center">
                       <button type="button" class="close" data-dismiss="alert">&times;</button>
                       <strong>Solo ingrese los campos que desee cambiar</strong> 
                       </div>
-
-
                      @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -29,14 +22,9 @@
                             </ul>
                         </div>
                      @endif
-
-
-
                     <form method= "post" action="{{url('escuela/asignaturas/'.$asignatura->id.'/edit')}}">
-                       {{ csrf_field() }}                                       
-
+                       {{ csrf_field() }}                                      
                         <div class="row">
-
                              <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
@@ -63,18 +51,7 @@
                                     </span>
                                     <input id="text" type="text" placeholder="Descripcion" class="form-control" name="descripcion" value="{{ $asignatura->descripcion }}" requiered>
                                 </div>
-                            </div>
-
-                            <div class="col-sm-6"> 
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">group</i>
-                                    </span>
-                                    <input id="grupo" type="number" placeholder="grupo" class="form-control" name="grupo" value="{{ $asignatura->grupo->name}}" required>
-                                </div>
-                            </div>                          
-
-                                                     
+                            </div>                                      
                                  <div class="footer text-center col-sm-5">  
                                  <button class="btn btn-primary">Guardar cambios</button>
                                  <a href="{{ url('/escuela/asignaturas') }}" class="btn btn-default">Cancelar</a>

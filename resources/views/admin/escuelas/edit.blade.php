@@ -33,7 +33,7 @@
 
                         <div class="row">
 
-                             <div class="col-sm-5">
+                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">face</i>
@@ -43,34 +43,25 @@
                                 </div>
                             </div>   
 
-                            <div class="col-sm-5">
+                            <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">fingerprint</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Username" name="username" value="{{ $user->username }}" required>
+                                    <input type="text" class="form-control" placeholder="Clave escuela" name="clave" value="{{ $user->clave }}" required>
                                 </div>                           
                             </div> 
 
-                            <div class="col-sm-5">  
+                            <div class="col-sm-6">  
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">email</i>
                                     </span>
                                     <input id="email" type="email" placeholder="Correo electrónico" class="form-control" name="email" value="{{ $user->email }}" requiered>
                                 </div>
-                            </div>
+                            </div>                         
 
-                            <div class="col-sm-5"> 
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="material-icons">school</i>
-                                    </span>
-                                    <input id="clave" type="clave" placeholder="Clave" class="form-control" name="clave" value="{{ $user->clave }}" required>
-                                </div>
-                            </div>   
-
-                            <div class="col-sm-5">
+                            <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="material-icons">lock_outline</i>
@@ -79,8 +70,17 @@
                                 </div>
                             </div> 
 
+                            <div class="col-sm-6">
+                                    <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                    <input placeholder="Confirmar contraseña" type="password" class="form-control" name="password_confirmation"  />
+                                    </div>
+                            </div>
+
                             
-                                 <div class="footer text-center col-sm-5">  
+                                 <div class="footer text-center col-sm-12">  
                                  <button class="btn btn-primary">Guardar cambios</button>
                                  <a href="{{ url('/admin/escuelas') }}" class="btn btn-default">Cancelar</a>
                             </div>

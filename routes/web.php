@@ -30,7 +30,12 @@ Route::middleware(['auth','escuela'])->prefix('escuela')->group(function()
 	//imagenes
 	Route::get('/docentes/{id}/images', 'ImageController@indexD'); //inicio
 	Route::post('/docentes/{id}/images', 'ImageController@store'); //guardar
-	Route::delete('/docentes/{id}/images', 'ImageController@destroy'); //eliminar 
+	Route::delete('/docentes/{id}/images', 'ImageController@destroy'); //eliminar
+
+	//profile
+	Route::get('/docentes/profile/{id}', 'EscuelaController@profile');
+	Route::post('/docentes/profile/{id}', 'EscuelaController@guardar');
+	Route::get('/docentes/profile/{id}/eliminar', 'EscuelaController@eliminar');  
 
 	Route::get('/docentes/asignaturas', 'EscuelaController@docente_asignatura'); //test asignaturas_docentes
 });	

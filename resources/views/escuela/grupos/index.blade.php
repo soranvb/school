@@ -21,20 +21,22 @@
                     
                     <div class="team">
                         <div class="row">
-                             <!-- <a href="{{ url('/escuela/grupos/create') }}" class="btn btn-primary btn-round">Registrar nueva grupo</a> -->
+                             <a href="{{ url('/escuela/grupos/create') }}" class="btn btn-primary btn-round">Registrar nuevo grupo</a>
                            <table class="table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Clave</th>
+                                     <th class="col-md-1 text-center">#</th>
+                                    <th class="col-md-2 text-center">Clave</th>
                                     <th class="col-md-2 text-center" >Nombre</th>
                                     <th class="col-md-4 text-center" >Descripcion</th>                                                                 
                                     <th class="text-right">Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($grupos as $grupo)
+                                    @foreach ($grupos as $key=> $grupo)
                                 <tr>
-                                    <td class="text-center">{{$grupo->id}}</td>
+                                    <td class="text-center">{{($key+1)}}</td>
+                                    <td class="text-center">{{$grupo->clave}}</td>
                                     <td>{{$grupo->name}}</td>
                                     <td>{{$grupo->descripcion}}</td>
                                     <td class="td-actions text-right">                                      

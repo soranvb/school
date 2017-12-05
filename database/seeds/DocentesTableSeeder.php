@@ -16,7 +16,18 @@ class DocentesTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    { 
+      Docente::create
+        ([
+            'user_id'=>'5',
+            'escuela_id'=>'3',
+        ]);
+
+              Docente::create
+        ([
+            'user_id'=>'10',
+            'escuela_id'=>'3',
+        ]);
           factory(Docente::class,10)->create();
           factory(Asignatura::class,10)->create();
           factory(Grupo::class,10)->create();

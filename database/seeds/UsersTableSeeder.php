@@ -49,6 +49,15 @@ class UsersTableSeeder extends Seeder
             'clave'=>23213,
         ]);
 
+        User::create
+        ([
+            'name'=>'Santi',
+            'email'=>'santi@hotmail.com',
+            'password'=> bcrypt('asdqwe123'),  
+            'role'=>2,
+            'clave'=>12345694,
+        ]);
+
         factory(User::class,50)->create();       
 
     }

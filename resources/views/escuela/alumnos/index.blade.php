@@ -25,7 +25,8 @@
                            <table class="table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Matricula</th>
+                                    <th class="col-md-1 text-center">#</th>
+                                    <th class="text-center">Clave</th>
                                     <th class="col-md-2 text-center" >Nombre</th>
                                     <th class="col-md-2 text-center">Grupo</th>
                                     <th class="col-md-2 text-center">Fecha Registro</th>
@@ -33,8 +34,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($alumnos as $alumno)
+                                    @foreach ($alumnos as $key=>$alumno)
                                 <tr>
+                                    <td class="text-center">{{($key+1)}}</td>
                                     <td class="text-center">{{$alumno->clave}}</td>
                                     <td>{{$alumno->users->name}}</td>
                                     <td>{{$alumno->grupos ? $alumno->grupos->name : 'Sin asignar'}}</td>

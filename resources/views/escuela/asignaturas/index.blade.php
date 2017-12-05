@@ -21,24 +21,24 @@
                     
                     <div class="team">
                         <div class="row">
-                             <!-- <a href="{{ url('/escuela/asignaturas/create') }}" class="btn btn-primary btn-round">Registrar nueva a</a> -->
+                              <a href="{{ url('/escuela/asignaturas/create') }}" class="btn btn-primary btn-round">Registrar nueva asignatura</a>
                            <table class="table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Clave</th>
-                                    <th class="col-md-2 text-center" >Nombre</th>
-                                    <th class="col-md-2 text-center">Grupo</th>
-                                    <th class="col-md-2 text-center">Descripcion</th>                                    
-                                    <th class="text-right">Opciones</th>
+                                    <th class="col-md-1 text-center">#</th>
+                                    <th class="col-md-2 text-center">Clave</th>
+                                    <th class="col-md-2 text-center" >Nombre</th>                                    
+                                    <th class="col-md-3 text-center">Descripcion</th>                                    
+                                    <th class="col-md-3 text-right">Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($asignaturas as $a)
+                                    @foreach ($asignaturas as $key => $a)
                                 <tr>
-                                    <td class="text-center"> {{$a->id}}</td>
-                                    <td>{{$a->name}}</td>
-                                     <td>{{$a->escuela_id ? $a->escuela_id : 'Sin asignar'}}</td>
-                                    <td>{{$a->descripcion}}</td>
+                                    <td class="text-center">{{($key+1)}}</td>
+                                    <td class="text-center"> {{$a->clave}}</td>
+                                    <td class="text-center">{{$a->name}}</td>                                     
+                                    <td class="text-center">{{$a->descripcion}}</td>
 
                                     
                                     <td class="td-actions text-right">

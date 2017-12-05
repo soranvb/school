@@ -105,10 +105,10 @@ class EscuelaController extends Controller
     }
 
      public function edit($id)
-    {
-        $user=User::find($id);
+    {   
         // $asignaturas=Asignatura::where('escuela_id',auth()->user())->OrderBy('name')->get();
         // $grupos=Grupo::where('escuela_id',auth()->user())->OrderBy('name')->get();
+        $user=User::find($id);        
         $docente=Docente::where('user_id' ,'=',$id)->first();
          // dd($docente->id);
         $docentes_asignaturas=Docentes_asignatura::where('docente_id','=',$docente->id)
@@ -117,6 +117,7 @@ class EscuelaController extends Controller
         
 
         return view('escuela.docentes.edit')->with(compact('user','docentes_asignaturas')); // formulario de edicion
+
     }
 
     public function update(Request $request, $id)
@@ -185,5 +186,56 @@ class EscuelaController extends Controller
 
         return redirect('escuela/docentes')->with('notification', 'Docente eliminado exitosamente');
     }
+
+    public function profile($id)
+    {
+         $user=User::find($id);
+         // $id=auth()->user()->id;
+         $escuela=Escuela::where('user_id', auth()->user()->id)->first();
+         $grupos=Grupo::where('escuela_id',$escuela->id)->OrderBy('name')->get();
+         $asignaturas=Asignatura::where('escuela_id',$escuela->id)->OrderBy('name')->get();              
+         $docente=Docente::where('user_id' ,'=',$id)->first();   
+           // dd($docente);      
+        $docentes_asignaturas=Docentes_asignatura::select('grupos.name as gruponame','asignaturas.name as asignaturaname', 'docentes_asignaturas.id as id',
+            'asignaturas.clave as asignatura_clave', 'grupos.clave as grupo_clave')
+        ->where('docente_id','=',$docente->id)
+        ->join('asignaturas', 'asignaturas.id', '=', 'asignatura_id' )
+        ->join('grupos', 'grupos.id', '=', 'grupo_id')
+        ->get();       
+        return view('escuela/docentes/profile')->with(compact('user','grupos','asignaturas','docentes_asignaturas','docente'));
+    }
+
+    public function guardar(Request $request, $id)
+    {
+       
+            
+            if($request->input('grupo_id') != '0')
+            {  
+                if ($request->input('asignatura_id')!= '0') 
+                {
+                 $docentes_asignaturas= new Docentes_asignatura();
+                 $docentes_asignaturas->asignatura_id=$request->input('asignatura_id');              
+                 $docentes_asignaturas->grupo_id=$request->input('grupo_id');
+                 $docentes_asignaturas->docente_id=$id;
+                 $docentes_asignaturas->save();
+                 $user=Docente::where('id',$id)->first();
+                 return Redirect('escuela/docentes/profile/'.$user->user_id)->with('notification', 'Asignacion exitosa');
+                }                
+            }
+             
+                 $user=Docente::where('id',$id)->first();
+                 return Redirect('escuela/docentes/profile/'.$user->user_id)->with('notification', 'Error selecione tanto grupo como asignatura');       
+    }
+
+    public function eliminar($id)
+    {   
+        $docentes_asignaturas= Docentes_asignatura::find($id);
+        $user=Docente::where('id',$docentes_asignaturas->docente_id)->first();
+        $docentes_asignaturas->delete();
+
+
+        return Redirect('escuela/docentes/profile/'.$user->user_id)->with('notification', 'Asignacion eliminada');
+    }
+
 
 }

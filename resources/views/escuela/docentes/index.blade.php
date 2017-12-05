@@ -25,24 +25,30 @@
                            <table class="table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Clave</th>
+                                    <th class="col-md-1 text-center">#</th>
+                                    <th class="col-md-2 text-center">Clave</th>
                                     <th class="col-md-2 text-center" >Nombre</th>
                                     <!-- <th class="col-md-2 text-center">xxxx</th> -->
-                                    <th class="col-md-2 text-center">Fecha Registro</th>
-                                    <th class="text-center">E-mail</th>
-                                    <th class="text-center">Asignaturas asignadas</th>
-                                    <th class="text-right">Opciones</th>
+                                    <th class="col-md-1 text-center">Fecha Registro</th>
+                                    <th class="col-md-1 text-center">E-mail</th>
+                                    <th class="col-md-2 text-center">Asignaturas y grupos asignados</th>
+                                    <th class="col-md-3 text-right">Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($docentes as $user)
+                                    @foreach ($docentes as $key=> $user)
                                 <tr>
-                                    <td class="text-center">{{$user->id}}</td>
+                                    <td class="text-center">{{($key+1)}}</td>
+                                    <td class="text-center">{{$user->clave}}</td>
                                     <td>{{$user->name}}</td>
                                     <!-- <td>$user->grupo->name</td> --> <!--CON  ESTE SE TRAE LOS DATOS ASOCIADOS CON GRUPO -->
                                     <td>{{ Carbon\Carbon::parse($user->created_at)->format('d-m-Y') }}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>x</td>
+                                    <td>        
+                                            <a href="{{url('escuela/docentes/profile/'.$user->id)}}" rel="tooltip" title="Asignaturas-Grupos" class="btn btn-primary btn-simple btn-xs">
+                                             <i class="fa fa-group"></i>Asignar/consultar
+                                            </a>       
+                                    </td>
                                     <td class="td-actions text-right">
 
                                             <a href="{{url('escuela/docentes/'.$user->id.'/images')}}" rel="tooltip" title="Cambiar imagen" class="btn btn-warning btn-simple btn-xs">                                                
@@ -51,11 +57,9 @@
 
                                              <a href="#" rel="tooltip" title="Ver docente" class="btn btn-info btn-simple btn-xs">
                                              <i class="fa fa-user"></i>
-                                             </a>                       
+                                             </a>    
 
-                                             <a href="#" rel="tooltip" title="Asignaturas asignadas" class="btn btn-warning btn-simple btn-xs">
-                                             <i class="fa fa-group"></i>
-                                            </a>                 
+                                       
 
                                             <a href="{{url('escuela/docentes/'.$user->id.'/edit')}}" rel="tooltip" title="Editar docente" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>

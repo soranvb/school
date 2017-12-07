@@ -34,8 +34,8 @@
                 </button>
 
                 <!-- areglar icono -->
-                 <a class="navbar-brand" href="/school/public/">
-                    <img src="/escolar/public/uploads/avatars/g.png" width="35" height="35" border="0" alt="logo">                            
+                 <a class="navbar-brand" href="/">
+                    <img src="{{asset(/escolar/public/uploads/avatars/g.png)}}" width="35" height="35" border="0" alt="logo">                            
                  </a>
                  <a class="navbar-brand" href="/school/public/">Enlace Escolar</a>
             </div>

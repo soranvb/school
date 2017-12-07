@@ -52,19 +52,11 @@
                                     <td class="td-actions text-right">
 
                                             <a href="{{url('escuela/docentes/'.$user->id.'/images')}}" rel="tooltip" title="Cambiar imagen" class="btn btn-warning btn-simple btn-xs">                                                
-                                                 <img src="/school/public/images/users/{{$user->avatar }}" width="20">
-                                            </a>                                             
-
-                                             <a href="#" rel="tooltip" title="Ver docente" class="btn btn-info btn-simple btn-xs">
-                                             <i class="fa fa-user"></i>
-                                             </a>    
-
-                                       
-
+                                                 <img src="{{asset('images/users/'.$user->avatar)}}" width="20">
+                                            </a>     
                                             <a href="{{url('escuela/docentes/'.$user->id.'/edit')}}" rel="tooltip" title="Editar docente" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>
                                             </a>
-
                                             <a href="{{url('escuela/docentes/'.$user->id.'/eliminar')}}" rel="tooltip" title="Dar de baja " class="btn btn-danger btn-simple btn-xs">
                                             <i class="fa fa-times"></i>
                                         </a>                                   

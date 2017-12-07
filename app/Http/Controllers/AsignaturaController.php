@@ -56,7 +56,7 @@ class AsignaturaController extends Controller
                 'name.max'=>'El nombre es demasiado extenso',                
                 'descripcion.max'=>'La descripcion es demasiada extensa',            
                 'clave.required'=>'Es necesario ingresar una clave',
-                 'clave.numeric'=>'La clave debe ser numerica',
+                'clave.numeric'=>'La clave debe ser numerica',
               
             ];
 

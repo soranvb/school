@@ -56,6 +56,7 @@ class EscuelaController extends Controller
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
                 'clave.numeric'=>'La clave debe ser numerica',
+                'clave.max'=>'La clave  es demasiada extensa',
 
             ];
 
@@ -128,7 +129,7 @@ class EscuelaController extends Controller
           $rules =[
             'name'=>'required|max:255',
             'email'=>'required|email|max:255',            
-            'clave'=>'required',              
+            'clave'=>'required|numeric',              
             'password_confirmation' => 'same:password',
         ];
 
@@ -141,6 +142,7 @@ class EscuelaController extends Controller
                 'password.requiered'=>'Olvido ingresar una contraseña',
                 'password.min'=>'La contraseña debe tener por lo menos 8 carracteres',
                 'clave.required'=>'Es necesario ingresar una clave',
+                'clave.numeric'=>'clave debe ser un campo numerico',
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
             ];

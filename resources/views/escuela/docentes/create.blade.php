@@ -73,9 +73,7 @@
                                     <input placeholder="Confirmar contraseña" type="password" class="form-control" name="password_confirmation" required />
                                     </div>
                             </div>
-
-
-                             <div class="col-sm-6 text-center ">
+            <!--                  <div class="col-sm-6 text-center ">
                                 <div class="form-group label-floating  ">
                                     <label class="control-label">Asignar asignatura</label>
                                     <select class="form-control" name="asignatura_id">
@@ -102,7 +100,7 @@
                                         @endforeach 
                                     </select>
                                     </div>
-                                </div>
+                                </div> -->
                              </div>
                                  
                                  <div class="footer text-center col-sm-12">  

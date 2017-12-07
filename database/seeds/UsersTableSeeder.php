@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
         	'password'=> bcrypt('asdqwe123'),       	
         	'role'=>0,
             'clave'=>50232,
+            'avatar'=>'admin.jpg',
 
         ]);
 
@@ -29,6 +30,7 @@ class UsersTableSeeder extends Seeder
             'password'=> bcrypt('asdqwe123'),            
             'role'=>1,
             'clave'=>5564743,
+            'avatar'=>'5a295bf0784faEl4aILVL.jpg'
         ]);
 
         User::create
@@ -38,6 +40,7 @@ class UsersTableSeeder extends Seeder
             'password'=> bcrypt('asdqwe123'),           
             'role'=>1,
             'clave'=>123424,
+            'avatar'=>'5a28cba8df538descarga.png'
         ]);
 
         User::create
@@ -47,6 +50,7 @@ class UsersTableSeeder extends Seeder
             'password'=> bcrypt('asdqwe123'),  
             'role'=>1,
             'clave'=>23213,
+            'avatar'=>'5a295bff7d28ddescarga (1).png',
         ]);
 
         User::create

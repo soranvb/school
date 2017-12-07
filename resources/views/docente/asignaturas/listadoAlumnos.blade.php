@@ -7,8 +7,7 @@
             <div class="container">   
                 <div class="section text-center">
                     <h2 class="title">Listado de alumnos del grupo "{{$grupo->name}}"</h2>
-                   <!--  <h4 class="title">Cantidad de {{$alumnos->count()}}"</h4> -->
-                    
+                   <!--  <h4 class="title">Cantidad de {{$alumnos->count()}}"</h4> -->                    
                     @if (session('notification'))
                         <div class="alert alert-success">
                             {{ session('notification') }}
@@ -29,6 +28,7 @@
                                     <th class="col-md-1 text-center">#</th>
                                     <th class="col-md-1 text-center">Clave</th>
                                     <th class="col-md-2 text-center">Nombre</th> 
+                                    <th class="col-md-2 text-center">Foto</th> 
                                     <th class="col-md-1 text-center">Parcial 1</th>
                                     <th class="col-md-1 text-center">Parcial 2</th>
                                     <th class="col-md-1 text-center">Parcial 3</th>
@@ -44,7 +44,8 @@
                                     <td class="text-center">{{($key+1)}}</td>
                                     <td class="text-center">{{$a->clave}}</td>
                                     <td class="text-center">{{$a->users->name}}</td>
-                                    <td>4 </td>
+                                    <td class="text-center"><img src="{{asset('images/users/'.$a->users->avatar)}}" width="35"></td>
+                                    <td>4</td>
                                     <td>7</td>
                                     <td>5</td>
                                     <td>6</td> 

@@ -35,7 +35,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                       <div class="panel-body">
-                       <img src="/school/public/images/users/{{$user->avatar }}" width="250">
+                       <img <img src="{{asset('images/users/'.$user->avatar)}}" width="250">
                         <form method="post" action="">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="profile">
                     <div class="avatar">
-                        <img src="/school/public/images/users/{{$user->avatar}}" alt="Imagen  {{ $user->name }}" class="img-circle img-responsive img-raised">
+                        <img src="{{asset('images/users/'.$user->avatar)}}" alt="Imagen  {{ $user->name }}" class="img-circle img-responsive img-raised">
                     </div>
 
                     <div class="name">
@@ -61,9 +61,8 @@
                                     <td class="text-center">{{$asignatura->gruponame}}</td>
                                     <td class="text-center">{{$asignatura->grupo_clave}}</td>
                                     <td class="td-actions text-right">
-
                                             <a >                                                
-                                                 <img src="/school/public/images/users/{{$user->avatar }}" width="20">
+                                                <img src="{{asset('images/users/'.$user->avatar)}}" width="20">
                                             </a>
 
                                             <a href="{{url('escuela/docentes/profile/'.$asignatura->id.'/eliminar')}}" rel="tooltip" title="Desasignar " class="btn btn-danger btn-simple btn-xs">

@@ -29,7 +29,7 @@ class AdminController extends Controller
             'name'=>'required|max:255',
             'email'=>'required|email|max:255|unique:users',
             'password'=>'required|min:8',
-            'clave'=>'required|unique:users',
+            'clave'=>'required|numeric',
             'password_confirmation' => 'min:6|same:password',
         ];
 
@@ -42,7 +42,8 @@ class AdminController extends Controller
                 'password.requiered'=>'Olvido ingresar una contraseña',
                 'password.min'=>'La contraseña debe tener por lo menos 6 carracteres',
                 'clave.required'=>'Es necesario ingresar una clave',
-                'clave.unique'=>'La clave ya se encuentra en uso',
+                'clave.numeric'=>'La clave debe ser numerica',
+                'clave.max'=>'La clave es demasiada extensa',
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
             ];
@@ -59,11 +60,9 @@ class AdminController extends Controller
     	$user->password= bcrypt($request->input('password'));
     	$user->role=(1);
     	$user->save();
-
         $escuela= new escuela();
         $escuela->user_id=$user->id;
         $escuela->save();
-
     	return redirect('admin/escuelas')->with('notification', 'usuario registrado exitosamente.');
     }
 
@@ -78,10 +77,11 @@ class AdminController extends Controller
 
          $rules =[
             'name'=>'required|max:255',
-            // 'email'=>'required|email|max:255|unique:users',
-            
-            'clave'=>'required',
+            'clave'=>'required|max:10|numeric',
             'password_confirmation' => 'min:6|same:password',
+            'clave.required'=>'Es necesario ingresar una clave',
+            'clave.numeric'=>'La clave debe ser numerica',
+            'clave.max'=>'La clave es demasiada extensa',
         ];
 
         $messages=[

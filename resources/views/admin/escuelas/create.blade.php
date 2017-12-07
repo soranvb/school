@@ -32,7 +32,7 @@
                                     <span class="input-group-addon">
                                         <i class="material-icons">face</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Nombre escuela" name="name"
+                                    <input id="name" type="text" class="form-control" placeholder="Nombre escuela" name="name"
                                            value="{{ old('name') }}" required autofocus>
                                 </div>
                             </div>   
@@ -42,7 +42,7 @@
                                     <span class="input-group-addon">
                                         <i class="material-icons">fingerprint</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Clave escuela" name="clave" value="{{ old('Clave') }}" required>
+                                    <input type="text" class="form-control" placeholder="Clave escuela" name="clave" value="{{ old('clave') }}" required>
                                 </div>                           
                             </div> 
 

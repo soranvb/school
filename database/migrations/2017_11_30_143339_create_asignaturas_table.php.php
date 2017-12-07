@@ -14,7 +14,7 @@ class CreateAsignaturasTable extends Migration
         Schema::create('asignaturas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('clave');
+            $table->string('clave')->nullable();;
             $table->text('descripcion')->nullable();
             // $table->tinyInteger('estatus')->default(1);
             // $table->integer('grupo_id')->unsigned()->nullable();

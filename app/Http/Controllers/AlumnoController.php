@@ -103,7 +103,6 @@ class AlumnoController extends Controller
             'email'=>'required|email|max:255',             
             'password_confirmation' => 'same:password',
         ];
-
         $messages=[
                 'name.requiered'=>'Es necesario ingresar el nombre del usuario',
                 'name.max'=>'El nombre es demasiado extenso',
@@ -116,11 +115,7 @@ class AlumnoController extends Controller
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
             ];
-
-
         $this->validate($request,$rules, $messages);
-
-
         //registrar en la BD
         // dd($request->all());
         $alumno=Alumno::find($id);
@@ -154,6 +149,7 @@ class AlumnoController extends Controller
       public function grupo($id)
     {
         $user=User::find($id);
-        return view('escuela.alumnos.grupo')->with(compact('user')); // formulario de edicion
+        $alumno=Alumno::where('user_id',$id)->first();
+        return view('escuela.alumnos.grupo')->with(compact('user','alumno')); // formulario de edicion
     }
 }

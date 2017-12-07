@@ -11,13 +11,13 @@
             <div class="row">
                 <div class="profile">
                     <div class="avatar">
-                        <img src="/school/public/images/users/{{$user->avatar}}" alt="Imagen  {{ $user->name }}" class="img-circle img-responsive img-raised">
+                        <img src="{{asset('images/users/'.$user->avatar)}}" alt="Imagen  {{ $user->name }}" class="img-circle img-responsive img-raised">
                     </div>
 
                     <div class="name">
                         <h3 class="title"> Alumno: {{ $user->name }}</h3>
                         <h4>Escuela :{{Auth::user()->name}} Clave{{Auth::user()->clave}}</h4>
-                        <h4> matricula alumno : {{ $user->matricula }}</h4>
+                        <h4> clave alumno : {{ $user->clave }}</h4>
 
                     
                 <div class="section">
@@ -63,7 +63,7 @@
                                     <span class="input-group-addon">
                                         <i class="material-icons">fingerprint</i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="matricula" name="matricula" value="{{ $user->matricula }}" required disabled>
+                                    <input type="text" class="form-control" placeholder="clave" name="clave" value="{{ $user->clave }}" required disabled>
                                 </div>                           
                             </div> 
 
@@ -81,12 +81,11 @@
                                     <span class="input-group-addon">
                                         <i class="material-icons">school</i>
                                     </span>
-                                    <input id="clave" type="materia" placeholder="materia" class="form-control" name="materia" value="x{{ $user->materia }}" required>
+                                    <input id="clave" type="grupo" placeholder="Grupo" class="form-control" name="grupo" value="{{ $alumno->grupos ? $alumno->grupos->name : 'Sin asignar' }}" required disabled>
                                 </div>
                             </div>                             
                                  <div class="footer text-center col-sm-12">  
-                                 <button class="btn btn-primary">Guardar cambios</button>
-                                 <a href="{{ url('/escuela/alumnos') }}" class="btn btn-default">Cancelar</a>
+                                   <a href="{{ url('/escuela/alumnos') }}" class="btn btn-default">Volver</a>
                             </div>
                     </form>                    
                 </div>                

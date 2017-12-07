@@ -34,7 +34,7 @@ class GrupoController extends Controller
 
         $rules =[
             'name'=>'required|max:255',
-            'clave'=>'required',
+            'clave'=>'required|numeric',
             'descripcion'=>'max:255',
 
         ];
@@ -43,7 +43,8 @@ class GrupoController extends Controller
                 'name.requiered'=>'Es necesario ingresar el nombre de la grupo',
                 'name.max'=>'El nombre es demasiado extenso',                
                 'descripcion.max'=>'La descripcion es demasiada extensa',            
-                'clave.required'=>'Es necesario ingresar una clave',              
+                'clave.required'=>'Es necesario ingresar una clave',  
+                'clave.numeric'=>'Clave debe ser numerico',            
             ];
         $this->validate($request,$rules, $messages);
 

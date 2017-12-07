@@ -44,10 +44,10 @@
                                     <td class="td-actions text-right">                           
 
                                             <a href="{{url('escuela/alumnos/'.$alumno->user_id.'/images')}}" rel="tooltip" title="Cambiar imagen" class="btn btn-warning btn-simple btn-xs">
-                                                <img src="/school/public/images/users/{{$alumno->users->avatar }}" width="20">
+                                                <img src="{{asset('images/users/'.$alumno->users->avatar) }}" width="20">
                                             </a>
 
-                                             <a href="{{url('escuela/alumnos/'.$alumno->id.'/grupo')}}" rel="tooltip" title="Ver alumno" class="btn btn-info btn-simple btn-xs">
+                                             <a href="{{url('escuela/alumnos/'.$alumno->user_id.'/grupo')}}" rel="tooltip" title="Ver alumno" class="btn btn-info btn-simple btn-xs">
                                              <i class="fa fa-user"></i>
                                              </a>                                        
                                             <a href="{{url('escuela/alumnos/'.$alumno->id.'/edit')}}" rel="tooltip" title="Editar alumno" class="btn btn-warning btn-simple btn-xs">

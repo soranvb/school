@@ -30,14 +30,12 @@
                 <button type="submit" class="btn btn-primary btn-round">Subir nueva imagen</button>
                 <a href="{{ url('/admin/escuelas') }}" class="btn btn-default btn-round">Volver al listado de escuelas</a>
             </form>
-
             <hr>
-
             <div class="row">            
                 <div class="col-md-12">
                     <div class="panel panel-default">
                       <div class="panel-body">
-                       <img src="/school/public/images/users/{{$user->avatar }}" width="250">
+                       <img <img src="{{asset('images/users/'.$user->avatar)}}" width="250">
                         <form method="post" action="">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

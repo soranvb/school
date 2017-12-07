@@ -35,7 +35,7 @@
 
                 <!-- areglar icono -->
                  <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{asset('images/users/avatars/g.png') }}" width="35" height="35" border="0" alt="logo">                            
+                    <img src="{{asset('images/users/g.png') }}" width="35" height="35" border="0" alt="logo">                            
                  </a>
                  <a class="navbar-brand" href="{{url('/')}}">Enlace Escolar</a>
             </div>

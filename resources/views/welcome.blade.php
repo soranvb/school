@@ -69,7 +69,7 @@
                             @foreach ($users as $user)
                             <div class="col-md-4">
                                 <div class="team-player">
-                                    <img src="{{asset('images/users/'.$user->avatar) }}" width="250" alt="Thumbnail Image" class="img-raised img-circle">
+                                    <img src="{{asset('images/users/'.$user->avatar)}}" width="250" alt="Thumbnail Image" class="img-raised img-circle">
                                     <h4 class="title">{{ $user->name }} <br />
                                         <small class="text-muted">Clave {{ $user->clave }}</small>
                                     </h4>

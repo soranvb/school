@@ -21,4 +21,9 @@ class Grupo extends Model
     	return $this->hasMany(Asignatura::class);  
     	
     }
+
+        public function docentes_asignatura()
+        {
+            return $this->hasOne(docentes_asignatura::class, 'grupo_id');
+        }
 }

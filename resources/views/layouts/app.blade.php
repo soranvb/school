@@ -112,7 +112,23 @@
                                             </ul>
                                         </li>    
 
-                          @endif
+                         @endif
+
+                              @if(auth()->user()->role==2)
+
+                                        <li class="dropdown">
+                                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                               <i class="material-icons">book</i> Asignaturas
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li class="dropdown-header"></li>
+                                                 <li><a href="{{ url('/docente/asignaturas') }}">Listado de asignaturas</a></li> 
+                                                <!--  <li><a href="{{ url('/escuela/asignaturas/create') }}">Registrar nueva asignatura</a></li>  -->                                              
+                                            </ul>
+                                        </li>  
+                              @endif
+
                                   
 
                     <li class="dropdown">                                                  

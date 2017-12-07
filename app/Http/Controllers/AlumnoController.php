@@ -43,7 +43,7 @@ class AlumnoController extends Controller
             'name'=>'required|max:255',
             'email'=>'required|email|max:255|unique:users',
             'password'=>'required|min:8',
-            'clave'=>'required',              
+            'clave'=>'required|numeric',              
             'password_confirmation' => 'required|min:8|same:password',
         ];
 
@@ -56,6 +56,7 @@ class AlumnoController extends Controller
                 'password.requiered'=>'Olvido ingresar una contraseña',
                 'password.min'=>'La contraseña debe tener por lo menos 8 carracteres',
                 'clave.required'=>'Es necesario ingresar una clave',
+                'clave.numeric'=>'La clave debe ser numerica',
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
             ];

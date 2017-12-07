@@ -46,7 +46,7 @@ class AsignaturaController extends Controller
 
         $rules =[
             'name'=>'required|max:255',
-            'clave'=>'required',
+            'clave'=>'required|numeric',
             'descripcion'=>'max:255',            
             
         ];
@@ -56,6 +56,7 @@ class AsignaturaController extends Controller
                 'name.max'=>'El nombre es demasiado extenso',                
                 'descripcion.max'=>'La descripcion es demasiada extensa',            
                 'clave.required'=>'Es necesario ingresar una clave',
+                 'clave.numeric'=>'La clave debe ser numerica',
               
             ];
 
@@ -88,7 +89,7 @@ class AsignaturaController extends Controller
     {
     	 $rules =[
             'name'=>'required|max:255',
-            'clave'=>'required|max:10',
+            'clave'=>'required|max:10|numeric',
             'descripcion'=>'max:255',            
             
         ];
@@ -99,6 +100,7 @@ class AsignaturaController extends Controller
                 'descripcion.max'=>'La descripcion es demasiada extensa',            
                 'clave.required'=>'Es necesario ingresar una clave',
                 'clave.max'=>'Es demasiada extensa la clave',
+                 'clave.numeric'=>'La clave debe ser numerica',
               
             ];
 

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminMiddleware
+class DocenteMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,8 +19,8 @@ class AdminMiddleware
         // if(! auth()->check())
         //     return redirect('login'); //si no esta logeado lo redirijo a login 
 
-        if(auth()->user()->role !=0) //si no es admin lo redirigir a home
-            return redirect('/');
-        return $next($request);       
+        if(auth()->user()->role !=2) //si no es admin lo redirigir a home
+            return redirect('/');        
+        return $next($request);
     }
 }

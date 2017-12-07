@@ -16,23 +16,21 @@ class AsignaturasTableSeeder extends Seeder
         
     	Asignatura::create
         ([
-        // 	'name'=>'Español',        	
-        //     'clave'=>('1'), 
-        //     'descripcion'=>'esta es una materia de español',
-        //     // 'grupo_id'=>('1'),
-        //     'clave_escuela'=>('10'), 
+         	'name'=>'Español',        	
+             'clave'=>('1'), 
+             'descripcion'=>'esta es una materia de español',
+              'escuela_id'=>('2'),
                           
-        // ]);
+        ]);
 
-        // Asignatura::create
-        // ([
-        // 	'name'=>'Matematicas',        	
-        //     'clave'=>('2'), 
-        //     'descripcion'=>'esta es una materia de materia',
-        //     // 'grupo_id'=>('1'), 
-        //     'clave_escuela'=>('10'),
+        Asignatura::create
+        ([
+            'name'=>'Matematicas',          
+             'clave'=>('6'), 
+             'descripcion'=>'esta es una materia de mate',
+              'escuela_id'=>('2'),
                           
-        // ]);
+        ]);
         //  Asignatura::create
         // ([
         // 	'name'=>'Biologia',        	
@@ -41,6 +39,6 @@ class AsignaturasTableSeeder extends Seeder
         //     // 'grupo_id'=>('1'), 
         //     'clave_escuela'=>('10'),
                            
-        ]);
+        // ]);
     }
 }

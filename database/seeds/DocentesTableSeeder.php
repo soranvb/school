@@ -20,13 +20,13 @@ class DocentesTableSeeder extends Seeder
       Docente::create
         ([
             'user_id'=>'5',
-            'escuela_id'=>'3',
+            'escuela_id'=>'2',
         ]);
 
               Docente::create
         ([
             'user_id'=>'10',
-            'escuela_id'=>'3',
+            'escuela_id'=>'2',
         ]);
           factory(Docente::class,10)->create();
           factory(Asignatura::class,10)->create();

@@ -25,4 +25,11 @@ class Alumno extends Model
     	return $this->belongsTo(Escuela::class, 'escuela_id');  //ID DEL DOCENTE NO LA MATRICULA
     	// , 'grupo_id'
     }
+
+     public function parcial()
+    {
+        return $this->hasOne(Parcial::class);  
+        
+    }
+
 }

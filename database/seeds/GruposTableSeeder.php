@@ -14,12 +14,13 @@ class GruposTableSeeder extends Seeder
      */
     public function run()
     {
-    	// Grupo::create
-     //    ([
-     //    	'name'=>'1A',        	
-     //        'clave'=>('1'),
-     //        'clave_escuela'=>('10'),            
-     //    ]);
+    	 Grupo::create
+        ([
+        	'name'=>('Segundo "A"'),        	
+            'clave'=>('14213'),
+            'descripcion'=>('hola es un grupo prueba'),
+            'escuela_id'=>('2'),            
+        ]);
 
      //    Grupo::create
      //    ([

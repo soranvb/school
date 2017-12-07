@@ -76,3 +76,24 @@ Route::middleware(['auth','escuela'])->prefix('escuela')->group(function()
 	Route::post('/grupos/{id}/edit', 'GrupoController@update'); 
 	Route::get('/grupos/{id}/eliminar', 'GrupoController@destroy'); 	
 });	
+
+Route::middleware(['auth','docente'])->prefix('docente')->group(function()  
+{
+	Route::get('/asignaturas', 'DocenteController@index');
+	Route::get('/asignaturas/grupo/{id}', 'DocenteController@listadoAlumnos');
+	Route::get('/asignaturas/grupo/parcial/{id}', 'DocenteController@listadoParcial');
+	Route::post('/asignaturas/grupo/parcial/{id}', 'DocenteController@guardar');
+});	
+
+
+
+//test mail
+Route::get('enviar', function(){
+	Mail::send('emails',[],function($message)
+	{
+		$message->from('riot@riotsupport.com', 'Riot');
+		$message->to('stygian.chrno@gmail.com', 'chrno')->subject('Cuenta DevilChrno baneada');
+	});
+	return"se a enviado el email";
+
+});

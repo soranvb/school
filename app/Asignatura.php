@@ -20,4 +20,8 @@ class Asignatura extends Model
     	// , 'grupo_id'
     }
    
+           public function docentes_asignatura()
+        {
+            return $this->hasOne(docentes_asignatura::class, 'asignatura_id');
+        }
 }

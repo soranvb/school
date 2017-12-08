@@ -19,7 +19,6 @@ class AsignaturaController extends Controller
          $escuela=Escuela::where('user_id',$id)->first();    	
     	 $asignaturas=Asignatura::where('escuela_id',$escuela->id)->paginate(10);
          // dd($asignaturas->all());
-
 //test
          
             // $docentes_asignaturas=DB::table('docentes_asignaturas')
@@ -32,15 +31,12 @@ class AsignaturaController extends Controller
             // ->where('users.clave_escuela', '=', $clave)->get();
 
 
-
     	return view('escuela.asignaturas.index')->with(compact('asignaturas')); //listado
     }
-
       public function create()
     {
     	return view('escuela.asignaturas.create'); // formulario registro asignaturas
     }
-
         public function store(Request $request)
     {
 
@@ -59,17 +55,11 @@ class AsignaturaController extends Controller
                 'clave.numeric'=>'La clave debe ser numerica',
               
             ];
-
-
         $this->validate($request,$rules, $messages);
-
     	//registrar en la BD
     	// dd($request->all());
-
-
         $id=auth()->user()->id;
         $escuela=Escuela::where('user_id',$id)->first();
-
     	$asignatura= new Asignatura();
     	$asignatura->name = $request->input('name');    	
     	$asignatura->clave=$request->input('clave');
@@ -89,11 +79,10 @@ class AsignaturaController extends Controller
     {
     	 $rules =[
             'name'=>'required|max:255',
-            'clave'=>'required|max:10|numeric',
+            'clave'=>'required|numeric',
             'descripcion'=>'max:255',            
             
         ];
-
         $messages=[
                 'name.requiered'=>'Es necesario ingresar el nombre de la Asignatura',
                 'name.max'=>'El nombre es demasiado extenso',                
@@ -101,11 +90,9 @@ class AsignaturaController extends Controller
                 'clave.required'=>'Es necesario ingresar una clave',
                 'clave.max'=>'Es demasiada extensa la clave',
                  'clave.numeric'=>'La clave debe ser numerica',
-              
-            ];
+                  ];
 
         $this->validate($request,$rules, $messages);
-
         $asignatura=Asignatura::find($id);
     	$asignatura->name = $request->input('name');    	
     	$asignatura->clave=$request->input('clave');
@@ -117,9 +104,7 @@ class AsignaturaController extends Controller
      public function destroy($id)
     {   
         $asignatura= Asignatura::find($id);              
-        $asignatura->delete();  //eliminar
-       
-
+        $asignatura->delete();  //eliminar      
         return redirect('escuela/asignaturas')->with('notification', 'asignatura eliminado exitosamente');
     }
 }

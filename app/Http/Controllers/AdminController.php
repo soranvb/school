@@ -24,7 +24,6 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-
         $rules =[
             'name'=>'required|max:255',
             'email'=>'required|email|max:255|unique:users',
@@ -32,7 +31,6 @@ class AdminController extends Controller
             'clave'=>'required|numeric',
             'password_confirmation' => 'min:6|same:password',
         ];
-
         $messages=[
                 'name.requiered'=>'Es necesario ingresar el nombre del usuario',
                 'name.max'=>'El nombre es demasiado extenso',
@@ -47,8 +45,6 @@ class AdminController extends Controller
                 'password_confirmation.same' => 'Las contraseñas no coinciden',
                 'password_confirmation.min' => 'La contraseña debe tener por lo menos 8 carracteres',
             ];
-
-
         $this->validate($request,$rules, $messages);
 
     	//registrar en la BD

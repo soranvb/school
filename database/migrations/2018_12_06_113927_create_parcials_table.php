@@ -21,12 +21,16 @@ class CreateParcialsTable extends Migration
             $table->integer('alumno_id')->unsigned()->nullable();
             $table->foreign('alumno_id')->references('id')->on('alumnos');
 
+            $table->integer('asignatura_id')->unsigned()->nullable();
+            $table->foreign('asignatura_id')->references('id')->on('asignaturas');
+
             $table->integer('uno');
             $table->integer('dos');
             $table->integer('tres');
             $table->integer('cuatro');
             $table->integer('cinco');
             $table->integer('seis');
+            $table->float('prom');
 
 
 

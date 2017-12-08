@@ -37,6 +37,7 @@
                                     <th class="col-md-1 text-center">Parcial 5</th>
                                     <th class="col-md-1 text-center">Parcial 6</th>
                                     <th class="col-md-1 text-center">Guardar</th>
+                                    <th class="col-md-1 text-center">Guardar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -83,7 +84,8 @@
                                             @for ($i = 1; $i < 11; $i++)
                                             <option value=" {{ $i }}"@if ($i == (@$a->parcial->seis)) selected  @endif > {{ $i }} </option>
                                             @endfor
-                                        </select></td>                                        
+                                        </select></td> 
+                                        <td>{{@$a->parcial ? @$a->parcial->prom : '0'}}</td>                                       
                                     <td class="td-actions text-center"> 
                                          <button class=" btn-primary btn-just-icon btn-xs " type="submit">Guardar
                                             <!-- <i class="material-icons">save</i> -->

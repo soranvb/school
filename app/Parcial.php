@@ -8,7 +8,7 @@ class Parcial extends Model
 {
              public function alumno()
         {
-            return $this->hasMany(Alumno::class, alumno_id);
+            return $this->hasMany(Alumno::class, 'alumno_id', 'asignatura_id');
         }
 
 }

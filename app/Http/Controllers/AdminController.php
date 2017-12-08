@@ -73,7 +73,7 @@ class AdminController extends Controller
 
          $rules =[
             'name'=>'required|max:255',
-            'clave'=>'required|max:10|numeric',
+            'clave'=>'required|numeric',
             'password_confirmation' => 'min:6|same:password',
             'clave.required'=>'Es necesario ingresar una clave',
             'clave.numeric'=>'La clave debe ser numerica',

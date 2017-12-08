@@ -15,7 +15,7 @@
                     @endif                    
                     <div class="team">
                         <div class="row">
-                            <a href="{{ url('/docente/asignaturas/notificacion') }}" class="btn btn-info btn-round">Generar notificacion</a>     
+                            <a href="{{ url('/docente/asignaturas/') }}" class="btn btn-info btn-round">Volver</a>     
                           <form class="form-inline" method="get" action="">
                             <input type="text" placeholder="¿Qué alumno buscas?" class="form-control" name="query" id="search">
                             <button class="btn btn-primary btn-just-icon" type="submit">
@@ -35,6 +35,7 @@
                                     <th class="col-md-1 text-center">Parcial 4</th>
                                     <th class="col-md-1 text-center">Parcial 5</th>
                                     <th class="col-md-1 text-center">Parcial 6</th>
+                                    <th class="col-md-1 text-center">Prom</th>
                                     <th class="col-md-1 text-center">Generar Notificacion</th>
                                 </tr>
                                 </thead>
@@ -45,12 +46,13 @@
                                     <td class="text-center">{{$a->clave}}</td>
                                     <td class="text-center">{{$a->users->name}}</td>
                                     <td class="text-center"><img src="{{asset('images/users/'.$a->users->avatar)}}" width="35"></td>
-                                    <td>4</td>
-                                    <td>7</td>
-                                    <td>5</td>
-                                    <td>6</td> 
-                                    <td>9</td>
-                                    <td>7</td>                                        
+                                    <td>{{@$a->parcial ? @$a->parcial->uno : '0'}}</td>
+                                    <td>{{@$a->parcial ? @$a->parcial->dos : '0'}}</td>
+                                    <td>{{@$a->parcial ? @$a->parcial->tres : '0'}}</td>
+                                    <td>{{@$a->parcial ? @$a->parcial->cuatro : '0'}}</td>
+                                    <td>{{@$a->parcial ? @$a->parcial->cinco : '0'}}</td>
+                                    <td>{{@$a->parcial ? @$a->parcial->seis : '0'}}</td>
+                                    <td>{{@$a->parcial ? @$a->parcial->prom : '0'}}</td>                                   
                                     <td class="td-actions text-center"> 
                                        <a href="{{ url('/docente/asignatura/info'.$a->id) }}" rel="tooltip" title="Notificar" class="btn btn-info btn-simple btn-xs" target="_blank">
                                             <i class="fa fa-info"></i>

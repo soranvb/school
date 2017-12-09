@@ -20,9 +20,12 @@ class DocenteController extends Controller
     {
     	 $id=auth()->user()->id;
     	 $docente=Docente::where('user_id',$id)->first();
-    	 $docentes_asignaturas=Docentes_asignatura::where('docente_id',$docente->id)->get();
-    	 return view('docente.asignaturas.index')->with(compact('docentes_asignaturas')); //listado
-    }
+       $docentes_asignaturas=Docentes_asignatura::where('docente_id',@$docente->id)->get();
+       if($docentes_asignaturas==null ) 
+       $docentes_asignaturas ='1';
+     return view('docente.asignaturas.index')->with(compact('docentes_asignaturas'));
+
+   }
 
          public function listadoAlumnos($id)
     {    

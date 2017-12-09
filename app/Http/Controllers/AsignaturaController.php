@@ -19,8 +19,7 @@ class AsignaturaController extends Controller
          $escuela=Escuela::where('user_id',$id)->first();    	
     	 $asignaturas=Asignatura::where('escuela_id',$escuela->id)->paginate(10);
          // dd($asignaturas->all());
-//test
-         
+//test  
             // $docentes_asignaturas=DB::table('docentes_asignaturas')
             // ->join('users', 'docentes_asignaturas.docente_id', '=', 'users.id' )
             // ->join('asignaturas', 'docentes_asignaturas.asignatura_id', '=', 'asignaturas.id' )

@@ -29,8 +29,8 @@
                                     @foreach ($docentes_asignaturas as $key => $a)
                                 <tr>                                
                                     <td class="text-center">{{($key+1)}}</td>
-                                    <td class="text-center"> {{$a->grupo->name}}</td>
-                                    <td class="text-center">{{$a->asignatura->name}}</td>                                     
+                                    <td class="text-center"> {{@$a->grupo->name}}</td>
+                                    <td class="text-center">{{@$a->asignatura->name}}</td>                                     
                                     <td class="td-actions text-center"> 
                                             <a href="{{url('docente/asignaturas/grupo/'.$a->grupo->id)}}" rel="tooltip" title="Ver alumnos" class="btn btn-info btn-simple btn-xs">
                                             <i class="fa fa-group"></i>Alumnos                                                
